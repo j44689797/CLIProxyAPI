@@ -20,10 +20,10 @@ RUN apk add --no-cache tzdata
 
 RUN mkdir /CLIProxyAPI
 
-COPY --from=builder ./app/CLIProxyAPI /CLIProxyAPI/CLIProxyAPI
+COPY --from=builder /app/CLIProxyAPI /CLIProxyAPI/CLIProxyAPI
 
-COPY config.example.yaml /CLIProxyAPI/config.example.yaml
-COPY config.yaml /CLIProxyAPI/config.yaml
+COPY --from=builder /app/config.example.yaml /CLIProxyAPI/config.example.yaml
+COPY --from=builder /app/config.yaml /CLIProxyAPI/config.yaml
 WORKDIR /CLIProxyAPI
 
 EXPOSE 8317
